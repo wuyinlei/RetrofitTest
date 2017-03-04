@@ -10,7 +10,12 @@ import com.mingchu.retrofittest.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mFirstButton,mSecondButton,mThreeButton,mFourButton,mFiveButton;
+    private Button mFirstButton,
+            mSecondButton,
+            mThreeButton,
+            mFourButton,
+            mFiveButton,
+            mSixButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mThreeButton.setOnClickListener(this);
         mFourButton.setOnClickListener(this);
         mFiveButton.setOnClickListener(this);
+        mSixButton.setOnClickListener(this);
 
     }
 
@@ -37,12 +43,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mThreeButton = (Button) findViewById(R.id.button_three);
         mFourButton = (Button) findViewById(R.id.button_four);
         mFiveButton = (Button) findViewById(R.id.button_five);
+        mSixButton = (Button) findViewById(R.id.button_six);
     }
 
     @Override
     public void onClick(View v) {
-        Intent  intent = new Intent();
-        switch (v.getId()){
+        Intent intent = new Intent();
+        switch (v.getId()) {
             case R.id.button_one:
                 intent.setClass(this, FirstActivity.class);
                 break;
@@ -53,13 +60,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_three:
 
                 intent.setClass(this, ThreeActivity.class);
+                break;
 
             case R.id.button_four:
 
                 intent.setClass(this, FourActivity.class);
+                break;
             case R.id.button_five:
 
                 intent.setClass(this, FiveActivity.class);
+                break;
+
+            case R.id.button_six:
+
+                intent.setClass(this, SixActivity.class);
+                break;
+
 
             default:
                 break;

@@ -48,6 +48,10 @@ public interface Api  {
     @GET("com/loadBanner_v2?type=consultant")
     Observable<ResponseBody> getRsponseBodyByRx();
 
+
+    @GET("com/loadBanner_v2?type=consultant")
+    Observable<BaseBean<BannerBean>> getBannerByRx();
+
 //    @Headers("Cache-Control: max-age=640000")
 //    @GET("widget/list")
 //    Call<List<Widget>> widgetList();
