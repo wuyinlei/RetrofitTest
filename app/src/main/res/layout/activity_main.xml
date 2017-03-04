@@ -19,13 +19,33 @@
 
     <Button
         android:id="@+id/button_one"
-        android:text="简单请求"
+        android:text="简单Retrofit请求"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/button_two"
-        android:text="简单的参数请求"
+        android:text="简单的Retrofit参数请求"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/button_three"
+        android:text="Retrofit的POST登录请求"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/button_four"
+        android:text="RX的GET请求"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/button_five"
+        android:text="RX的POST请求"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
