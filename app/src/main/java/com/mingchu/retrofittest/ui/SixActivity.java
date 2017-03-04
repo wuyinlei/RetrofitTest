@@ -3,21 +3,19 @@ package com.mingchu.retrofittest.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.mingchu.retrofittest.R;
 import com.mingchu.retrofittest.api.Api;
 import com.mingchu.retrofittest.api.ServerFactoryRx;
+import com.mingchu.retrofittest.bean.BannerBean;
+import com.mingchu.retrofittest.bean.BaseBean;
+import com.mingchu.retrofittest.rx.subscribe.ProgressDialogSubscriber;
 import com.mingchu.retrofittest.url.HttpUrlPaths;
 import com.mingchu.retrofittest.utils.RxSchedulerUtils;
 
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
-import rx.Subscriber;
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 
@@ -33,33 +31,49 @@ public class SixActivity extends AppCompatActivity {
 
         subscriptions = new CompositeSubscription();
 
-        Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL);
-        Subscription subscribe = serviceFactory.getRsponseBodyByRx()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-                .compose(RxSchedulerUtils.<ResponseBody>normalSchedulersTransformer())
-                .subscribe(new Subscriber<ResponseBody>() {
-                    @Override
-                    public void onCompleted() {
-                        Toast.makeText(SixActivity.this, "数据请求完成了", Toast.LENGTH_SHORT).show();
-                    }
+        findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL);
+//                Subscription subscribe = serviceFactory.getRsponseBodyByRx()
+////                .subscribeOn(Schedulers.io())
+////                .observeOn(AndroidSchedulers.mainThread())
+//                        .compose(RxSchedulerUtils.<ResponseBody>normalSchedulersTransformer())
+//                        .subscribe(new Subscriber<ResponseBody>() {
+//                            @Override
+//                            public void onCompleted() {
+//                                Toast.makeText(SixActivity.this, "数据请求完成了", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//                                Toast.makeText(SixActivity.this, "数据请求出错了" + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onNext(ResponseBody responseBody) {
+//                                try {
+//                                    Toast.makeText(SixActivity.this, responseBody.string().toString(), Toast.LENGTH_SHORT).show();
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Toast.makeText(SixActivity.this, "数据请求出错了" + e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                    }
+                Subscription subscribe = serviceFactory.getBannerByRx()
+                        .compose(RxSchedulerUtils.<BaseBean<BannerBean>>normalSchedulersTransformer())
+                        .subscribe(new ProgressDialogSubscriber<BaseBean<BannerBean>>(SixActivity.this) {
+                            @Override
+                            public void onNext(BaseBean<BannerBean> bannerBeanBaseBean) {
+                                Toast.makeText(SixActivity.this, "bannerBeanBaseBean.getT().size():"
+                                        + bannerBeanBaseBean.getT().size(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
-                    @Override
-                    public void onNext(ResponseBody responseBody) {
-                        try {
-                            Toast.makeText(SixActivity.this, responseBody.string().toString(), Toast.LENGTH_SHORT).show();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
 
-        subscriptions.add(subscribe);
+                subscriptions.add(subscribe);
+            }
+        });
 
 
     }
