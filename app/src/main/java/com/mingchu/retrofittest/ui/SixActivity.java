@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mingchu.retrofittest.MyApplicaption;
 import com.mingchu.retrofittest.R;
 import com.mingchu.retrofittest.api.Api;
 import com.mingchu.retrofittest.api.ServerFactoryRx;
@@ -34,7 +35,7 @@ public class SixActivity extends AppCompatActivity {
         findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL);
+                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL, MyApplicaption.getInstance().getGson(),SixActivity.this);
 //                Subscription subscribe = serviceFactory.getRsponseBodyByRx()
 ////                .subscribeOn(Schedulers.io())
 ////                .observeOn(AndroidSchedulers.mainThread())

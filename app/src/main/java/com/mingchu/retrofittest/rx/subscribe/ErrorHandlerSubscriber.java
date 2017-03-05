@@ -6,9 +6,6 @@ import android.util.Log;
 import com.mingchu.retrofittest.rx.RxErrorHandler;
 import com.mingchu.retrofittest.rx.exception.BaseException;
 
-/**
- * Created by wuyinlei on 2017/3/4.
- */
 
 public abstract class ErrorHandlerSubscriber<T> extends DefaultSubscribe<T> {
 

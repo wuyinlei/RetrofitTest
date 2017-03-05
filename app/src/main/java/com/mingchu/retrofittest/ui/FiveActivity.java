@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mingchu.retrofittest.MyApplicaption;
 import com.mingchu.retrofittest.R;
 import com.mingchu.retrofittest.api.Api;
 import com.mingchu.retrofittest.api.ServerFactoryRx;
@@ -20,6 +21,8 @@ import rx.schedulers.Schedulers;
 
 public class FiveActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,7 @@ public class FiveActivity extends AppCompatActivity {
 
                 Toast.makeText(FiveActivity.this, "点击了", Toast.LENGTH_SHORT).show();
 
-                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL);
+                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL, MyApplicaption.getInstance().getGson(),FiveActivity.this);
                 serviceFactory.getBannerByRx().subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Subscriber<BaseBean<BannerBean>>() {
