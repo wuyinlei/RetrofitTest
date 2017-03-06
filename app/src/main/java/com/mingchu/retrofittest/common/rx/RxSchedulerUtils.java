@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.utils;
+package com.mingchu.retrofittest.common.rx;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;

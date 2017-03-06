@@ -6,13 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mingchu.retrofittest.MyApplicaption;
+import com.mingchu.retrofittest.MyApplication;
 import com.mingchu.retrofittest.R;
 import com.mingchu.retrofittest.api.Api;
 import com.mingchu.retrofittest.api.ServerFactoryRx;
 import com.mingchu.retrofittest.bean.BannerBean;
 import com.mingchu.retrofittest.bean.BaseBean;
-import com.mingchu.retrofittest.url.HttpUrlPaths;
+import com.mingchu.retrofittest.common.constant.HttpUrlPaths;
 
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -35,7 +35,7 @@ public class FiveActivity extends AppCompatActivity {
 
                 Toast.makeText(FiveActivity.this, "点击了", Toast.LENGTH_SHORT).show();
 
-                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL, MyApplicaption.getInstance().getGson(),FiveActivity.this);
+                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL, MyApplication.getInstance().getGson(),FiveActivity.this);
                 serviceFactory.getBannerByRx().subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(new Subscriber<BaseBean<BannerBean>>() {

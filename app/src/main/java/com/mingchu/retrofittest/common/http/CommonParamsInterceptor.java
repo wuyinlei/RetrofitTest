@@ -1,10 +1,10 @@
-package com.mingchu.retrofittest.http;
+package com.mingchu.retrofittest.common.http;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.mingchu.retrofittest.constant.Constants;
+import com.mingchu.retrofittest.common.constant.Constants;
 import com.mingchu.retrofittest.utils.DensityUtil;
 import com.mingchu.retrofittest.utils.DeviceUtils;
 
@@ -123,6 +123,7 @@ public class CommonParamsInterceptor implements Interceptor {
                 RequestBody requestBody = request.body();
                 HashMap<String, Object> rootMap = new HashMap<>();
                 if (requestBody instanceof FormBody) {
+
                     for (int i = 0; i < ((FormBody) requestBody).size(); i++) {
                         rootMap.put(((FormBody) requestBody).encodedName(i), ((FormBody) requestBody).encodedValue(i));
                     }
@@ -133,11 +134,10 @@ public class CommonParamsInterceptor implements Interceptor {
                     String oldParamsJson = buffer.readUtf8();
                     rootMap = mGson.fromJson(oldParamsJson, HashMap.class);  //原始参数
                     rootMap.put("publicParams", commomParamsMap);  //重新组装
-                    String newJsonParams = mGson.toJson(rootMap);  //装换成json字符串
-
-                    request = request.newBuilder().post(RequestBody.create(JSON, newJsonParams)).build();
                 }
 
+                String newJsonParams = mGson.toJson(rootMap);  //装换成json字符串
+                request = request.newBuilder().post(RequestBody.create(JSON, newJsonParams)).build();
 
             }
         } catch (JsonSyntaxException e) {

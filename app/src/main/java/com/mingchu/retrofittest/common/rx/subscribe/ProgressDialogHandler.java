@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.rx.subscribe;
+package com.mingchu.retrofittest.common.rx.subscribe;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,7 +12,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ProgressDialogHandler extends Handler {
 
-    public static final int SHOW_PROGRESS_DIALOG=1;
+    public static final int SHOW_PROGRESS_DIALOG = 1;
 
     public static final int DISMISS_PROGRESS_DIALOG = 0;
 
@@ -24,7 +24,7 @@ public class ProgressDialogHandler extends Handler {
 
     private OnProgressCancelListener mOnProgressCancelListener;
 
-    public ProgressDialogHandler(Context context, boolean cancelable, OnProgressCancelListener cancelListener){
+    public ProgressDialogHandler(Context context, boolean cancelable, OnProgressCancelListener cancelListener) {
         super();
         this.mContext = context;
         this.cancelable = cancelable;
@@ -34,19 +34,19 @@ public class ProgressDialogHandler extends Handler {
     }
 
     private void initProgressDialog() {
-        if (mAlertDialog == null){
-            mAlertDialog = new SweetAlertDialog(mContext,SweetAlertDialog.PROGRESS_TYPE);
+        if (mAlertDialog == null) {
+            mAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE);
             mAlertDialog.getProgressHelper().setBarColor(Color.parseColor("#a5dc86"));
             mAlertDialog.setTitleText(mContext.getResources().getString(R.string.loading));
 
-            if (cancelable){
+            if (cancelable) {
                 mAlertDialog.setCancelText(mContext.getResources().getString(R.string.close));
                 mAlertDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         sweetAlertDialog.cancel();
 
-                        if (mOnProgressCancelListener != null){
+                        if (mOnProgressCancelListener != null) {
                             mOnProgressCancelListener.onCancelProgress();
                         }
 
@@ -57,14 +57,14 @@ public class ProgressDialogHandler extends Handler {
 
     }
 
-    public void showProgressDialog(){
-        if (mAlertDialog != null && !mAlertDialog.isShowing()){
+    public void showProgressDialog() {
+        if (mAlertDialog != null && !mAlertDialog.isShowing()) {
             mAlertDialog.show();
         }
     }
 
-    public void dismissProgressDialog(){
-        if (mAlertDialog != null){
+    public void dismissProgressDialog() {
+        if (mAlertDialog != null) {
             mAlertDialog.dismiss();
             mAlertDialog = null;
         }
@@ -72,7 +72,7 @@ public class ProgressDialogHandler extends Handler {
 
     @Override
     public void handleMessage(Message msg) {
-        switch (msg.what){
+        switch (msg.what) {
             case SHOW_PROGRESS_DIALOG:
                 showProgressDialog();
                 break;
@@ -83,7 +83,7 @@ public class ProgressDialogHandler extends Handler {
         }
     }
 
-    interface OnProgressCancelListener{
+    interface OnProgressCancelListener {
 
         void onCancelProgress();
     }

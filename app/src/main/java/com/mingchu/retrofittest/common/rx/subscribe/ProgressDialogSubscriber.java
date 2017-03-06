@@ -1,39 +1,36 @@
-package com.mingchu.retrofittest.rx.subscribe;
+package com.mingchu.retrofittest.common.rx.subscribe;
 
 import android.content.Context;
 
-import com.mingchu.retrofittest.rx.RxErrorHandler;
-import com.mingchu.retrofittest.rx.exception.BaseException;
 
-
-public abstract class ProgressSubscriber<T> extends ErrorHandlerSubscriber<T>
+public abstract class ProgressDialogSubscriber<T> extends ErrorHandlerSubscriber<T>
         implements ProgressDialogHandler.OnProgressCancelListener {
 
 //    private ProgressDialog mProgressDialog;
 
-    private RxErrorHandler mErrorHandler;
+    private ProgressDialogHandler mProgressDialogHandler;
 
     private Context mContext;
 
-    private ProgressDialogHandler mProgressDialogHandler;
-
-
-
-
-    public ProgressSubscriber(Context context) {
+    public ProgressDialogSubscriber(Context context) {
         super(context);
         this.mContext = context;
-        mErrorHandler = new RxErrorHandler(mContext);
         mProgressDialogHandler = new ProgressDialogHandler(mContext,true,this);
     }
 
 
     @Override
     public void onStart() {
+        super.onStart();
+        if (isShowDialog())
+            this.mProgressDialogHandler.showProgressDialog();
     }
 
     @Override
     public void onCompleted() {
+        if (isShowDialog()){
+            this.mProgressDialogHandler.dismissProgressDialog();
+        }
     }
 
     /**
@@ -48,9 +45,8 @@ public abstract class ProgressSubscriber<T> extends ErrorHandlerSubscriber<T>
     @Override
     public void onError(Throwable e) {
         super.onError(e);
-        BaseException exception = mErrorHandler.handlerError(e);
         if (isShowDialog()){
-
+            this.mProgressDialogHandler.dismissProgressDialog();
         }
     }
 

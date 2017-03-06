@@ -1,10 +1,10 @@
-package com.mingchu.retrofittest.rx.subscribe;
+package com.mingchu.retrofittest.common.rx.subscribe;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.mingchu.retrofittest.rx.RxErrorHandler;
-import com.mingchu.retrofittest.rx.exception.BaseException;
+import com.mingchu.retrofittest.common.rx.RxErrorHandler;
+import com.mingchu.retrofittest.common.rx.exception.BaseException;
 
 
 public abstract class ErrorHandlerSubscriber<T> extends DefaultSubscribe<T> {
@@ -20,13 +20,12 @@ public abstract class ErrorHandlerSubscriber<T> extends DefaultSubscribe<T> {
 
     @Override
     public void onError(Throwable e) {
-        BaseException baseException =  mRxErrorHandler.handlerError(e);
+        BaseException baseException = mRxErrorHandler.handlerError(e);
 
-        if(baseException==null){
+        if (baseException == null) {
             e.printStackTrace();
-            Log.d("ErrorHandlerSubscriber",e.getMessage());
-        }
-        else {
+            Log.d("ErrorHandlerSubscriber", e.getMessage());
+        } else {
             mRxErrorHandler.showErrorMessage(baseException);
         }
     }

@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.constant;
+package com.mingchu.retrofittest.common.constant;
 
 /**
  * Created by wuyinlei on 2017/3/5.

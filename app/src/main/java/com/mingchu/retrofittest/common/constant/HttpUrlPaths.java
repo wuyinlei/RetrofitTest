@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.url;
+package com.mingchu.retrofittest.common.constant;
 
 
 /**

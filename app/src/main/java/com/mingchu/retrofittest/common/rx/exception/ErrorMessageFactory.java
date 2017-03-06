@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.rx.exception;
+package com.mingchu.retrofittest.common.rx.exception;
 
 import android.content.Context;
 

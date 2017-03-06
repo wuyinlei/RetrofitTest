@@ -1,15 +1,14 @@
-package com.mingchu.retrofittest.http;
+package com.mingchu.retrofittest.common.http;
 
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.mingchu.retrofittest.url.HttpUrlPaths;
+import com.mingchu.retrofittest.common.constant.HttpUrlPaths;
 
 import java.util.concurrent.TimeUnit;
 
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -55,8 +54,11 @@ public class HttpManager {
 //                .addInterceptor(new HttpLoggingInterceptor())
 
                 .addInterceptor(new CommonParamsInterceptor(gson,context))
+//                .addNetworkInterceptor(new NetWorkCustomInterceptor())  //可以用于拦截之后添加缓存 修改请求头信息
                 .connectTimeout(10, TimeUnit.SECONDS)//链接超时
                 .readTimeout(10, TimeUnit.SECONDS)//设置读取超时
+                .retryOnConnectionFailure(true)
+                .writeTimeout(10,TimeUnit.SECONDS)
                 .build();
 
     }
@@ -70,9 +72,9 @@ public class HttpManager {
     public static Retrofit getRetrofit(OkHttpClient client) {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(HttpUrlPaths.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(client);
+                .addConverterFactory(GsonConverterFactory.create())  //添加gson解析支持
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())  //添加rxjava支持
+                .client(client);  //配合okhttp
         return builder.build();
     }
 }

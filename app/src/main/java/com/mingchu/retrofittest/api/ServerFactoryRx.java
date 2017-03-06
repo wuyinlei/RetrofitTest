@@ -3,14 +3,10 @@ package com.mingchu.retrofittest.api;
 import android.content.Context;
 
 import com.google.gson.Gson;
-import com.mingchu.retrofittest.http.HttpManager;
-
-import java.util.concurrent.TimeUnit;
+import com.mingchu.retrofittest.common.http.HttpManager;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by wuyinlei on 2017/3/4.

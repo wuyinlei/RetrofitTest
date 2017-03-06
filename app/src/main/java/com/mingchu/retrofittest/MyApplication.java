@@ -8,18 +8,18 @@ import com.google.gson.Gson;
  * Created by wuyinlei on 2017/3/5.
  */
 
-public class MyApplicaption extends Application {
+public class MyApplication extends Application {
 
-    private static MyApplicaption mInstance;
+    private volatile static MyApplication mInstance;
 
-    private MyApplicaption(){
+    private MyApplication(){
 
     }
 
-    public static MyApplicaption getInstance() {
+    public static MyApplication getInstance() {
         if (mInstance == null ){
-            synchronized (MyApplicaption.class){
-                mInstance = new MyApplicaption();
+            synchronized (MyApplication.class){
+                mInstance = new MyApplication();
             }
         }
         return mInstance;

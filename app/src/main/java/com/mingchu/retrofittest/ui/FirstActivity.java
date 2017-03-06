@@ -10,7 +10,7 @@ import com.mingchu.retrofittest.R;
 import com.mingchu.retrofittest.api.Api;
 import com.mingchu.retrofittest.bean.BannerBean;
 import com.mingchu.retrofittest.bean.BaseBean;
-import com.mingchu.retrofittest.url.HttpUrlPaths;
+import com.mingchu.retrofittest.common.constant.HttpUrlPaths;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,12 +1,12 @@
-package com.mingchu.retrofittest.rx;
+package com.mingchu.retrofittest.common.rx;
 
 import android.content.Context;
 import android.widget.Toast;
 
 import com.google.gson.JsonParseException;
-import com.mingchu.retrofittest.rx.exception.ApiException;
-import com.mingchu.retrofittest.rx.exception.BaseException;
-import com.mingchu.retrofittest.rx.exception.ErrorMessageFactory;
+import com.mingchu.retrofittest.common.rx.exception.ApiException;
+import com.mingchu.retrofittest.common.rx.exception.BaseException;
+import com.mingchu.retrofittest.common.rx.exception.ErrorMessageFactory;
 
 import java.net.SocketException;
 import java.net.SocketTimeoutException;

@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.rx.exception;
+package com.mingchu.retrofittest.common.rx.exception;
 
 /**
  * Created by wuyinlei on 2017/2/23.

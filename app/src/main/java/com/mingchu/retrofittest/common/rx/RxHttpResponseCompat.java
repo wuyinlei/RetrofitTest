@@ -1,7 +1,7 @@
-package com.mingchu.retrofittest.rx;
+package com.mingchu.retrofittest.common.rx;
 
 import com.mingchu.retrofittest.bean.RealBaseBean;
-import com.mingchu.retrofittest.rx.exception.ApiException;
+import com.mingchu.retrofittest.common.rx.exception.ApiException;
 
 import rx.Observable;
 import rx.Subscriber;

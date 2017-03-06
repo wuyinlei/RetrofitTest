@@ -6,15 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.mingchu.retrofittest.MyApplicaption;
+import com.mingchu.retrofittest.MyApplication;
 import com.mingchu.retrofittest.R;
 import com.mingchu.retrofittest.api.Api;
 import com.mingchu.retrofittest.api.ServerFactoryRx;
 import com.mingchu.retrofittest.bean.BannerBean;
 import com.mingchu.retrofittest.bean.BaseBean;
-import com.mingchu.retrofittest.rx.subscribe.ProgressDialogSubscriber;
-import com.mingchu.retrofittest.url.HttpUrlPaths;
-import com.mingchu.retrofittest.utils.RxSchedulerUtils;
+import com.mingchu.retrofittest.common.rx.subscribe.ProgressDialogSubscriber;
+import com.mingchu.retrofittest.common.constant.HttpUrlPaths;
+import com.mingchu.retrofittest.common.rx.RxSchedulerUtils;
 
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
@@ -35,7 +35,7 @@ public class SixActivity extends AppCompatActivity {
         findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL, MyApplicaption.getInstance().getGson(),SixActivity.this);
+                Api serviceFactory = ServerFactoryRx.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL, MyApplication.getInstance().getGson(),SixActivity.this);
 //                Subscription subscribe = serviceFactory.getRsponseBodyByRx()
 ////                .subscribeOn(Schedulers.io())
 ////                .observeOn(AndroidSchedulers.mainThread())

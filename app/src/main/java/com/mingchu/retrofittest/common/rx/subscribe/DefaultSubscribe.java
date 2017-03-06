@@ -1,4 +1,4 @@
-package com.mingchu.retrofittest.rx.subscribe;
+package com.mingchu.retrofittest.common.rx.subscribe;
 
 import rx.Subscriber;
 
