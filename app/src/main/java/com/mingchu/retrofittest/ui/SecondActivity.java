@@ -1,9 +1,11 @@
 package com.mingchu.retrofittest.ui;
 
 import android.os.Bundle;
+import android.support.annotation.MenuRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mingchu.retrofittest.R;
@@ -24,12 +26,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SecondActivity extends AppCompatActivity {
 
     Api api;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_second);
+
+        mTextView = (TextView) findViewById(R.id.text);
 
         findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,21 +51,23 @@ public class SecondActivity extends AppCompatActivity {
                 String userid = "54442";
                 String cuserid = "54442";
 
-                api.getUserInfoByPost(userid,cuserid).enqueue(new Callback<UserBean>() {
+                api.getUserInfoByPost(userid, cuserid).enqueue(new Callback<UserBean>() {
                     @Override
                     public void onResponse(Call<UserBean> call, Response<UserBean> response) {
-                        Toast.makeText(SecondActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SecondActivity.this, response.body().toString(), Toast.LENGTH_SHORT).show();
+
+                        mTextView.setText(response.body().toString());
                     }
 
                     @Override
                     public void onFailure(Call<UserBean> call, Throwable t) {
-                        Toast.makeText(SecondActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(SecondActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
+                        mTextView.setText(t.toString());
                     }
                 });
 
                 //工厂类可以这样使用
 //                Api factory = ServerFactory.createServiceFactory(Api.class, HttpUrlPaths.BASE_URL);
-
 
 
             }

@@ -53,7 +53,7 @@ public class HttpManager {
                 //HeadInterceptor 实现了Intercepter  用来网Request  Header添加一些相关数据  如APP版本 token信息
 //                .addInterceptor(new HttpLoggingInterceptor())
 
-                .addInterceptor(new CommonParamsInterceptor(gson,context))
+               // .addInterceptor(new CommonParamsInterceptor(gson,context))
 //                .addNetworkInterceptor(new NetWorkCustomInterceptor())  //可以用于拦截之后添加缓存 修改请求头信息
                 .connectTimeout(10, TimeUnit.SECONDS)//链接超时
                 .readTimeout(10, TimeUnit.SECONDS)//设置读取超时

@@ -38,7 +38,8 @@ public interface Api  {
     Call<UserBean>  getUserInfoByPost(@Query("userid") String userid,@Query("cuserid") String cuserid );
 
     //@GET("group/{id}/users")
-    //类似于  111.111.111.11:8888/user/8
+    //类似于  111.111.111.11:8888/user/8/fdas?
+//    @POST("{id}")
    // Call<List<User>> groupList(@Path("id") int groupId, @QueryMap Map<String, String> options);
 
     @POST("Api/User")

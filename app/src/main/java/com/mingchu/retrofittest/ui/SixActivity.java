@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mingchu.retrofittest.MyApplication;
@@ -24,11 +25,15 @@ public class SixActivity extends AppCompatActivity {
 
     private CompositeSubscription subscriptions;
 
+    private TextView mTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_six);
+
+        mTextView = (TextView) findViewById(R.id.text);
 
         subscriptions = new CompositeSubscription();
 
@@ -64,10 +69,15 @@ public class SixActivity extends AppCompatActivity {
                 Subscription subscribe = serviceFactory.getBannerByRx()
                         .compose(RxSchedulerUtils.<BaseBean<BannerBean>>normalSchedulersTransformer())
                         .subscribe(new ProgressDialogSubscriber<BaseBean<BannerBean>>(SixActivity.this) {
+
+
+
                             @Override
                             public void onNext(BaseBean<BannerBean> bannerBeanBaseBean) {
-                                Toast.makeText(SixActivity.this, "bannerBeanBaseBean.getT().size():"
-                                        + bannerBeanBaseBean.getT().size(), Toast.LENGTH_SHORT).show();
+                                mTextView.setText("bannerBeanBaseBean.getT().size():"
+                                        + bannerBeanBaseBean.getT().toString());
+//                                Toast.makeText(SixActivity.this, "bannerBeanBaseBean.getT().size():"
+//                                        + bannerBeanBaseBean.getT().size(), Toast.LENGTH_SHORT).show();
                             }
                         });
 

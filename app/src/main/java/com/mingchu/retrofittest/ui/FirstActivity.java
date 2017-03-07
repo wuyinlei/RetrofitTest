@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mingchu.retrofittest.R;
@@ -24,11 +25,15 @@ public class FirstActivity extends AppCompatActivity {
 
     Api api;
 
+    TextView mTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_first);
+
+        mTextView = (TextView) findViewById(R.id.text);
 
         findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,13 +68,14 @@ public class FirstActivity extends AppCompatActivity {
                 api.getBannerBean().enqueue(new Callback<BaseBean<BannerBean>>() {
                     @Override
                     public void onResponse(Call<BaseBean<BannerBean>> call, Response<BaseBean<BannerBean>> response) {
-                        Toast.makeText(FirstActivity.this, "response.body().getResultCount():" + response.body().getResultCount(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(FirstActivity.this, response.body().getT().toString(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(FirstActivity.this, "response.body().getResultCount():" + response.body().getResultCount(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(FirstActivity.this, response.body().getT().toString(), Toast.LENGTH_SHORT).show();
+                        mTextView.setText(response.body().getT().toString());
                     }
 
                     @Override
                     public void onFailure(Call<BaseBean<BannerBean>> call, Throwable t) {
-
+                        mTextView.setText(t.toString());
                     }
                 });
 

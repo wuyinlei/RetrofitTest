@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mingchu.retrofittest.R;
@@ -25,12 +26,15 @@ import retrofit2.Response;
 
 public class ThreeActivity extends AppCompatActivity {
 
+    TextView mTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_three);
+
+        mTextView = (TextView) findViewById(R.id.text);
 
         findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,11 +48,13 @@ public class ThreeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<UserMessage> call, Response<UserMessage> response) {
                         Toast.makeText(ThreeActivity.this, response.body().getData().toString(), Toast.LENGTH_SHORT).show();
+                        mTextView.setText(response.body().getData().toString());
                     }
 
                     @Override
                     public void onFailure(Call<UserMessage> call, Throwable t) {
                         Log.d("ThreeActivity", t.toString());
+                        mTextView.setText(t.toString());
                         Toast.makeText(ThreeActivity.this, t.toString(), Toast.LENGTH_SHORT).show();
                     }
                 });

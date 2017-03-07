@@ -60,7 +60,8 @@ public class CommonParamsInterceptor implements Interceptor {
             //添加公共参数
             HashMap<String, Object> commomParamsMap = new HashMap<>();
 
-            commomParamsMap.put(Constants.IMEI, DeviceUtils.getIMEI(mContext));
+            //这个需要6.0权限  不光要给  还需要用户手动授权才行
+//            commomParamsMap.put(Constants.IMEI, DeviceUtils.getIMEI(mContext));
             commomParamsMap.put(Constants.MODEL, DeviceUtils.getModel());
             commomParamsMap.put(Constants.LANGUAGE, DeviceUtils.getLanguage());
             commomParamsMap.put(Constants.os, DeviceUtils.getBuildVersionIncremental());
@@ -123,7 +124,6 @@ public class CommonParamsInterceptor implements Interceptor {
                 RequestBody requestBody = request.body();
                 HashMap<String, Object> rootMap = new HashMap<>();
                 if (requestBody instanceof FormBody) {
-
                     for (int i = 0; i < ((FormBody) requestBody).size(); i++) {
                         rootMap.put(((FormBody) requestBody).encodedName(i), ((FormBody) requestBody).encodedValue(i));
                     }
@@ -134,10 +134,11 @@ public class CommonParamsInterceptor implements Interceptor {
                     String oldParamsJson = buffer.readUtf8();
                     rootMap = mGson.fromJson(oldParamsJson, HashMap.class);  //原始参数
                     rootMap.put("publicParams", commomParamsMap);  //重新组装
+                    String newJsonParams = mGson.toJson(rootMap);  //装换成json字符串
+
+                    request = request.newBuilder().post(RequestBody.create(JSON, newJsonParams)).build();
                 }
 
-                String newJsonParams = mGson.toJson(rootMap);  //装换成json字符串
-                request = request.newBuilder().post(RequestBody.create(JSON, newJsonParams)).build();
 
             }
         } catch (JsonSyntaxException e) {

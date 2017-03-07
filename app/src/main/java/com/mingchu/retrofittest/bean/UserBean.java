@@ -73,6 +73,18 @@ public class UserBean implements Serializable {
         this.results = results;
     }
 
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "errorCode='" + errorCode + '\'' +
+                ", errorStr='" + errorStr + '\'' +
+                ", resultCount='" + resultCount + '\'' +
+                ", score='" + score + '\'' +
+                ", balance='" + balance + '\'' +
+                ", results=" + results +
+                '}';
+    }
+
     public static class ResultsBean {
         /**
          * userid : 54442
@@ -671,6 +683,71 @@ public class UserBean implements Serializable {
             this.catgsRating = catgsRating;
         }
 
+        @Override
+        public String toString() {
+            return "ResultsBean{" +
+                    "userid='" + userid + '\'' +
+                    ", qjCode='" + qjCode + '\'' +
+                    ", nickname='" + nickname + '\'' +
+                    ", avatar='" + avatar + '\'' +
+                    ", slogan='" + slogan + '\'' +
+                    ", audio='" + audio + '\'' +
+                    ", audioLength='" + audioLength + '\'' +
+                    ", gender='" + gender + '\'' +
+                    ", score='" + score + '\'' +
+                    ", dob='" + dob + '\'' +
+                    ", constellation='" + constellation + '\'' +
+                    ", height='" + height + '\'' +
+                    ", weight='" + weight + '\'' +
+                    ", role='" + role + '\'' +
+                    ", emotion='" + emotion + '\'' +
+                    ", occupation='" + occupation + '\'' +
+                    ", city='" + city + '\'' +
+                    ", label='" + label + '\'' +
+                    ", hobby='" + hobby + '\'' +
+                    ", like='" + like + '\'' +
+                    ", hate='" + hate + '\'' +
+                    ", likeCnt='" + likeCnt + '\'' +
+                    ", consultantCnt='" + consultantCnt + '\'' +
+                    ", isLiked='" + isLiked + '\'' +
+                    ", isFollowed='" + isFollowed + '\'' +
+                    ", isInBlacklist='" + isInBlacklist + '\'' +
+                    ", groupCnt='" + groupCnt + '\'' +
+                    ", cmtCnt='" + cmtCnt + '\'' +
+                    ", isAnchor='" + isAnchor + '\'' +
+                    ", distance='" + distance + '\'' +
+                    ", lastLoginLatitude='" + lastLoginLatitude + '\'' +
+                    ", lastLoginLongitude='" + lastLoginLongitude + '\'' +
+                    ", isConsultant='" + isConsultant + '\'' +
+                    ", catgs='" + catgs + '\'' +
+                    ", honor='" + honor + '\'' +
+                    ", resume='" + resume + '\'' +
+                    ", qualification='" + qualification + '\'' +
+                    ", qualificationPhotos='" + qualificationPhotos + '\'' +
+                    ", fee='" + fee + '\'' +
+                    ", clinicName='" + clinicName + '\'' +
+                    ", address='" + address + '\'' +
+                    ", lon='" + lon + '\'' +
+                    ", lat='" + lat + '\'' +
+                    ", isNamePending='" + isNamePending + '\'' +
+                    ", isQuaPending='" + isQuaPending + '\'' +
+                    ", nameDraft='" + nameDraft + '\'' +
+                    ", quaDraft='" + quaDraft + '\'' +
+                    ", quaPhotosDraft='" + quaPhotosDraft + '\'' +
+                    ", videoProfile='" + videoProfile + '\'' +
+                    ", webcallPrice='" + webcallPrice + '\'' +
+                    ", canShare='" + canShare + '\'' +
+                    ", shareUrl='" + shareUrl + '\'' +
+                    ", shareTitle='" + shareTitle + '\'' +
+                    ", shareContent='" + shareContent + '\'' +
+                    ", topComment=" + topComment +
+                    ", continuedPercent='" + continuedPercent + '\'' +
+                    ", timelyPercent='" + timelyPercent + '\'' +
+                    ", giftNum='" + giftNum + '\'' +
+                    ", catgsRating=" + catgsRating +
+                    '}';
+        }
+
         public static class TopCommentBean {
             /**
              * id : 64699
@@ -796,6 +873,24 @@ public class UserBean implements Serializable {
             public void setRating(String rating) {
                 this.rating = rating;
             }
+
+            @Override
+            public String toString() {
+                return "TopCommentBean{" +
+                        "id='" + id + '\'' +
+                        ", objectId='" + objectId + '\'' +
+                        ", objectType='" + objectType + '\'' +
+                        ", userid='" + userid + '\'' +
+                        ", name='" + name + '\'' +
+                        ", avatar='" + avatar + '\'' +
+                        ", replyToUserid='" + replyToUserid + '\'' +
+                        ", replyToUserName='" + replyToUserName + '\'' +
+                        ", replyToContent='" + replyToContent + '\'' +
+                        ", content='" + content + '\'' +
+                        ", consultantTags='" + consultantTags + '\'' +
+                        ", rating='" + rating + '\'' +
+                        '}';
+            }
         }
 
         public static class CatgsRatingBean {
@@ -832,18 +927,16 @@ public class UserBean implements Serializable {
             public void setRating(String rating) {
                 this.rating = rating;
             }
+
+            @Override
+            public String toString() {
+                return "CatgsRatingBean{" +
+                        "key='" + key + '\'' +
+                        ", label='" + label + '\'' +
+                        ", rating='" + rating + '\'' +
+                        '}';
+            }
         }
     }
 
-    @Override
-    public String toString() {
-        return "UserBean{" +
-                "errorCode='" + errorCode + '\'' +
-                ", errorStr='" + errorStr + '\'' +
-                ", resultCount='" + resultCount + '\'' +
-                ", score='" + score + '\'' +
-                ", balance='" + balance + '\'' +
-                ", results=" + results.getAvatar() +
-                '}';
-    }
 }

@@ -12,9 +12,9 @@ public class MyApplication extends Application {
 
     private volatile static MyApplication mInstance;
 
-    private MyApplication(){
-
-    }
+//    private MyApplication(){
+//
+//    }
 
     public static MyApplication getInstance() {
         if (mInstance == null ){

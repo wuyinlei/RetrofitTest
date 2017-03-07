@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mingchu.retrofittest.MyApplication;
@@ -26,13 +27,17 @@ import rx.schedulers.Schedulers;
 
 public class FourActivity extends AppCompatActivity {
 
+    private TextView mTextView;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_four);
 
-        Toast.makeText(this, "到这了", Toast.LENGTH_SHORT).show();
+        mTextView = (TextView) findViewById(R.id.text);
+
+//        Toast.makeText(this, "到这了", Toast.LENGTH_SHORT).show();
 
         findViewById(R.id.requestData).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,20 +50,29 @@ public class FourActivity extends AppCompatActivity {
                 bodyByRx.subscribeOn(Schedulers.io())  //io线程  做耗时操作
                         .observeOn(AndroidSchedulers.mainThread())  //主线程更新UI
                         .subscribe(new Subscriber<ResponseBody>() {
-                    @Override
+
+                            @Override
+                            public void onStart() {
+                                super.onStart();
+
+                            }
+
+                            @Override
                     public void onCompleted() {
                         Toast.makeText(FourActivity.this, "请求完成", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(FourActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        mTextView.setText(e.getMessage().toString());
+//                        Toast.makeText(FourActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onNext(ResponseBody responseBody) {
                         try {
-                            Toast.makeText(FourActivity.this, responseBody.string().toString(), Toast.LENGTH_SHORT).show();
+                          mTextView.setText(responseBody.string());
+//                            Toast.makeText(FourActivity.this, responseBody.string().toString(), Toast.LENGTH_SHORT).show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
