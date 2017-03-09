@@ -17,6 +17,9 @@ public class MyApplication extends Application {
 //    }
 
     public static MyApplication getInstance() {
+
+
+        //判断为空
         if (mInstance == null ){
             synchronized (MyApplication.class){
                 mInstance = new MyApplication();
